@@ -23,16 +23,9 @@ const difficultyOptions = [
   }
 ];
 
-interface ICurrentOptions {
-  amount: number;
-  category: number | null;
-  difficulty: "easy" | "medium" | "hard" | null;
-  type: "multiple" | "boolean" | null;
-}
-
 const Main = () => {
   const [categories, setCategories] = useState<DefaultOptionType[]>([]);
-  const [currentOptions, setCurrentOptions] = useState<ICurrentOptions>({
+  const [currentOptions, setCurrentOptions] = useState<IQuizOptions>({
     amount: 10,
     category: null,
     difficulty: null,
@@ -55,6 +48,10 @@ const Main = () => {
     setCurrentOptions({ ...currentOptions, amount: value! });
   }, []);
 
+  const changeCategory = useCallback((value: string) => {
+    setCurrentOptions({ ...currentOptions, category: parseInt(value) });
+  }, []);
+
   const changeDifficulty = useCallback((e: RadioChangeEvent) => {
     setCurrentOptions({ ...currentOptions, difficulty: e.target.value });
   }, []);
@@ -65,7 +62,6 @@ const Main = () => {
         <Typography.Title>Welcome to the Quiz App!</Typography.Title>
 
         <InputNumber
-          size="large"
           style={{ width: "100%" }}
           defaultValue={currentOptions.amount}
           onChange={changeAmount}
@@ -73,10 +69,13 @@ const Main = () => {
           max={50}
         ></InputNumber>
 
-        <Select defaultValue="" options={categories} size="large" />
+        <Select
+          defaultValue=""
+          options={categories}
+          onChange={changeCategory}
+        />
 
         <Radio.Group
-          size="large"
           options={difficultyOptions}
           value={currentOptions.difficulty ?? ""}
           onChange={changeDifficulty}
