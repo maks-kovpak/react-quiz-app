@@ -1,12 +1,7 @@
-import './App.css';
-import { Typography } from 'antd';
+import Main from "./pages/Main";
 
-function App() {
-  return (
-    <Typography>
-      <Typography.Title>Hello world!</Typography.Title>
-    </Typography>
-  );
-}
+const App = () => {
+  return <Main />;
+};
 
 export default App;
