@@ -3,6 +3,7 @@ import type { DefaultOptionType } from "antd/es/select";
 import { useEffect, useState } from "react";
 import CategoriesAPI from "../api/categories";
 import { fetchQuestionsFx } from "../stores/quiz";
+import { useNavigate } from "react-router-dom";
 
 type RadioGroupOptions = React.ComponentProps<typeof Radio.Group>["options"];
 
@@ -61,6 +62,8 @@ const Main = () => {
     fetchCategories();
   }, []);
 
+  const navigate = useNavigate();
+
   return (
     <main>
       <Flex vertical={true} gap="10px">
@@ -110,7 +113,10 @@ const Main = () => {
 
         <Button
           type="primary"
-          onClick={async () => await fetchQuestionsFx(currentOptions)}
+          onClick={async () => {
+            await fetchQuestionsFx(currentOptions);
+            navigate("/question");
+          }}
         >
           Go to the quiz
         </Button>

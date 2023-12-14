@@ -1,13 +1,15 @@
 import { createEffect, createEvent, createStore } from "effector";
-import type { IQuestion } from "../api/questions";
-import QuestionsAPI from "../api/questions";
+import QuestionsAPI, { type IQuestion } from "../api/questions";
+import { clamp } from "lodash";
 
 export interface IQuizStore {
   questions: IQuestion[];
   currentIndex: number;
 }
 
-export const goToNextQuestion = createEvent<number>();
+export const goToNextQuestion = createEvent();
+export const goToPrevQuestion = createEvent();
+export const resetQuiz = createEvent();
 
 export const fetchQuestionsFx = createEffect(
   async (params: Partial<IQuizOptions>): Promise<IQuestion[]> => {
@@ -22,10 +24,12 @@ const $quizStore = createStore<IQuizStore>({ questions: [], currentIndex: 0 })
   }))
   .on(goToNextQuestion, state => ({
     ...state,
-    currentIndex: Math.min(
-      Math.max(0, state.currentIndex + 1),
-      state.questions.length
-    )
-  }));
+    currentIndex: clamp(state.currentIndex + 1, 0, state.questions.length)
+  }))
+  .on(goToPrevQuestion, state => ({
+    ...state,
+    currentIndex: clamp(state.currentIndex - 1, 0, state.questions.length)
+  }))
+  .reset(resetQuiz);
 
 export default $quizStore;
