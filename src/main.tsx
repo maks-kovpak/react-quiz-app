@@ -4,24 +4,32 @@ import { ConfigProvider, ThemeConfig } from "antd";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App.tsx";
+import Main from "./pages/Main.tsx";
 import Question from "./pages/Question.tsx";
 import "./styles/index.less";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />
-  },
-  {
-    path: "/question",
-    element: <Question />
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Main />
+      },
+      {
+        path: "/question",
+        element: <Question />
+      }
+    ]
   }
 ]);
 
 const config: ThemeConfig = {
   token: {
     fontFamily: "'General Sans', sans-serif",
-    colorPrimary: "#31CD63"
+    colorPrimary: "#31CD63",
+    colorBgBase: "#F4F3F6"
   }
 };
 

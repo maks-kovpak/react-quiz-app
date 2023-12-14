@@ -25,6 +25,7 @@
     "@types/he": "^1.2.3",
     "@types/less": "^3.0.6",
     "@types/lodash": "^4.14.202",
+    "@types/node": "^20.10.4",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@types/uuid": "^9.0.7",

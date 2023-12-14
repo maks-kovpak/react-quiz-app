@@ -1,7 +1,13 @@
-import Main from "./pages/Main";
+import { Outlet } from "react-router-dom";
+import Footer from "./components/Footer";
 
 const App = () => {
-  return <Main />;
+  return (
+    <>
+      <Outlet />
+      <Footer />
+    </>
+  );
 };
 
 export default App;

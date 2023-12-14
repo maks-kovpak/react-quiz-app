@@ -28,8 +28,10 @@ const Question = () => {
   }, [currentQuestion]);
 
   return (
-    <div>
-      <Typography.Title>{he.decode(currentQuestion.question)}</Typography.Title>
+    <main>
+      <Typography.Title level={2}>
+        {he.decode(currentQuestion.question)}
+      </Typography.Title>
 
       <Radio.Group>
         <Space direction="vertical">
@@ -42,7 +44,7 @@ const Question = () => {
       </Radio.Group>
 
       <Button onClick={nextQuestion}>Next</Button>
-    </div>
+    </main>
   );
 };
 
