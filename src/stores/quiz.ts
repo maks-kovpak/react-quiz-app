@@ -15,7 +15,7 @@ export const fetchQuestionsFx = createEffect(
   }
 );
 
-const $store = createStore<IQuizStore>({ questions: [], currentIndex: 0 })
+const $quizStore = createStore<IQuizStore>({ questions: [], currentIndex: 0 })
   .on(fetchQuestionsFx.doneData, (state, fetchedQuestions) => ({
     ...state,
     questions: fetchedQuestions
@@ -28,4 +28,4 @@ const $store = createStore<IQuizStore>({ questions: [], currentIndex: 0 })
     )
   }));
 
-export default $store;
+export default $quizStore;

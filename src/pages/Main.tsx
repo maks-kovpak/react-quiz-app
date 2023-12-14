@@ -1,9 +1,12 @@
-import { Flex, InputNumber, Select, Typography, Radio } from "antd";
+import { Flex, InputNumber, Select, Typography, Radio, Button } from "antd";
 import type { DefaultOptionType } from "antd/es/select";
 import { useEffect, useState } from "react";
 import CategoriesAPI from "../api/categories";
+import { fetchQuestionsFx } from "../stores/quiz";
 
-const difficultyOptions = [
+type RadioGroupOptions = React.ComponentProps<typeof Radio.Group>["options"];
+
+const difficultyOptions: RadioGroupOptions = [
   {
     value: "",
     label: "Any Difficulty"
@@ -19,6 +22,21 @@ const difficultyOptions = [
   {
     value: "hard",
     label: "Hard"
+  }
+];
+
+const typeOptions: RadioGroupOptions = [
+  {
+    value: "",
+    label: "Any Type"
+  },
+  {
+    value: "multiple",
+    label: "Multiple Choice"
+  },
+  {
+    value: "boolean",
+    label: "True / False"
   }
 ];
 
@@ -77,6 +95,25 @@ const Main = () => {
           }}
           optionType="button"
         />
+
+        <Radio.Group
+          options={typeOptions}
+          value={currentOptions.type ?? ""}
+          onChange={e => {
+            setCurrentOptions({
+              ...currentOptions,
+              type: e.target.value
+            });
+          }}
+          optionType="button"
+        />
+
+        <Button
+          type="primary"
+          onClick={async () => await fetchQuestionsFx(currentOptions)}
+        >
+          Go to the quiz
+        </Button>
       </Flex>
     </main>
   );
