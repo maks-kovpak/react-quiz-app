@@ -14,15 +14,19 @@
     "axios": "^1.6.2",
     "effector": "^23.0.0",
     "effector-react": "^23.0.1",
+    "he": "^1.2.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.0"
+    "react-router-dom": "^6.21.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@types/he": "^1.2.3",
     "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.2.0",
