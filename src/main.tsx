@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, ThemeConfig } from "antd";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App.tsx";
-import "./index.css";
 import Question from "./pages/Question.tsx";
+import "./styles/index.less";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +18,16 @@ const router = createBrowserRouter([
   }
 ]);
 
+const config: ThemeConfig = {
+  token: {
+    fontFamily: "'General Sans', sans-serif",
+    colorPrimary: "#31CD63"
+  }
+};
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <ConfigProvider componentSize="large">
+    <ConfigProvider theme={config} componentSize="large">
       <RouterProvider router={router} />
     </ConfigProvider>
   </React.StrictMode>

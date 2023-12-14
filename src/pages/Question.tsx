@@ -5,6 +5,7 @@ import $quizStore, { goToNextQuestion } from "../stores/quiz";
 import he from "he";
 import { shuffle } from "lodash";
 import { v4 as uuidv4 } from "uuid";
+import { Typography, Button } from "antd";
 
 type AnswerOptions = Array<{ value: number; label: string }>;
 
@@ -28,7 +29,7 @@ const Question = () => {
 
   return (
     <div>
-      <h1>{he.decode(currentQuestion.question)}</h1>
+      <Typography.Title>{he.decode(currentQuestion.question)}</Typography.Title>
 
       <Radio.Group>
         <Space direction="vertical">
@@ -40,7 +41,7 @@ const Question = () => {
         </Space>
       </Radio.Group>
 
-      <button onClick={nextQuestion}>Next</button>
+      <Button onClick={nextQuestion}>Next</Button>
     </div>
   );
 };
