@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-inner">
-        <Button>Continue</Button>
+        <Button type="primary">Continue</Button>
       </div>
     </footer>
   );

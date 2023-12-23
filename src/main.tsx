@@ -6,7 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 import Main from "./pages/Main.tsx";
 import Question from "./pages/Question.tsx";
-import "./styles/index.less";
+import "@/assets/styles/index.less";
 
 const router = createBrowserRouter([
   {

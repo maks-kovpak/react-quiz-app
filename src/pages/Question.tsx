@@ -14,7 +14,7 @@ const Question = () => {
 
   const currentQuestion = useMemo(() => {
     return quiz.questions[quiz.currentIndex];
-  }, [quiz.currentIndex]);
+  }, [quiz]);
 
   const answerOptions = useMemo(() => {
     const shuffledAnswers = shuffle([
