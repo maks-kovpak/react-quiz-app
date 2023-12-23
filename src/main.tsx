@@ -1,17 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConfigProvider, ThemeConfig } from "antd";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import App from "./App.tsx";
-import Main from "./pages/Main.tsx";
-import Question from "./pages/Question.tsx";
+import Main from "./pages/main";
+import Question from "./pages/question";
 import "@/assets/styles/index.less";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Outlet />,
     children: [
       {
         path: "/",
@@ -30,6 +29,11 @@ const config: ThemeConfig = {
     fontFamily: "'General Sans', sans-serif",
     colorPrimary: "#31CD63",
     colorBgBase: "#F4F3F6"
+  },
+  components: {
+    Progress: {
+      defaultColor: "#31CD63"
+    }
   }
 };
 

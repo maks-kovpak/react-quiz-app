@@ -1,8 +1,8 @@
 import { Flex, InputNumber, Select, Typography, Radio, Button } from "antd";
 import type { DefaultOptionType } from "antd/es/select";
 import { useEffect, useState } from "react";
-import CategoriesAPI from "../api/categories";
-import { fetchQuestionsFx } from "../stores/quiz";
+import CategoriesAPI from "../../api/categories";
+import { fetchQuestionsFx } from "../../stores/quiz";
 import { useNavigate } from "react-router-dom";
 
 type RadioGroupOptions = React.ComponentProps<typeof Radio.Group>["options"];
