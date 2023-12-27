@@ -1,14 +1,17 @@
 import { useMemo } from "react";
-import { Radio, Space } from "antd";
+import { Radio, Space, Typography } from "antd";
+
 import { useUnit } from "effector-react";
 import $quizStore from "@/stores/quiz";
+
+import Footer from "@/components/Footer";
+import AnswerOption from "@/components/AnswerOption";
+
 import he from "he";
 import { shuffle } from "lodash";
 import { v4 as uuidv4 } from "uuid";
-import { Typography } from "antd";
-import Footer from "@/components/Footer";
 
-type AnswerOptions = Array<{ value: number; label: string }>;
+const alphabet = "ABCDEF";
 
 const Question = () => {
   const quiz = useUnit($quizStore);
@@ -23,9 +26,12 @@ const Question = () => {
       ...currentQuestion.incorrect_answers
     ]);
 
-    return shuffledAnswers.reduce<AnswerOptions>((accumulator, item, index) => {
-      return [...accumulator, { value: index, label: item }];
-    }, []);
+    return shuffledAnswers.reduce<IAnswerOption[]>(
+      (accumulator, item, index) => {
+        return [...accumulator, { value: index, label: item }];
+      },
+      []
+    );
   }, [currentQuestion]);
 
   return (
@@ -37,10 +43,8 @@ const Question = () => {
 
         <Radio.Group>
           <Space direction="vertical">
-            {answerOptions.map(ans => (
-              <Radio value={ans.value} key={uuidv4()}>
-                {he.decode(ans.label)}
-              </Radio>
+            {answerOptions.map((ans, i) => (
+              <AnswerOption option={ans} prefix={alphabet[i]} key={uuidv4()} />
             ))}
           </Space>
         </Radio.Group>

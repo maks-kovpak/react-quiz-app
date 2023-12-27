@@ -7,3 +7,8 @@ interface IQuizOptions {
   difficulty: QuizDifficulty | null;
   type: QuizType | null;
 }
+
+interface IAnswerOption {
+  value: number;
+  label: string;
+}
