@@ -15,7 +15,7 @@ export default class QuestionsAPI {
   private static generateUrl(options: Partial<IQuizOptions>): string {
     const params = new URLSearchParams();
 
-    for (let [key, value] of Object.entries(options)) {
+    for (const [key, value] of Object.entries(options)) {
       if (value) {
         params.append(key, value.toString());
       }
