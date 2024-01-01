@@ -17,19 +17,27 @@ export const fetchQuestionsFx = createEffect(
   }
 );
 
-const $quizStore = createStore<IQuizStore>({ questions: [], currentIndex: 0 })
-  .on(fetchQuestionsFx.doneData, (state, fetchedQuestions) => ({
-    ...state,
-    questions: fetchedQuestions
-  }))
-  .on(goToNextQuestion, state => ({
-    ...state,
-    currentIndex: clamp(state.currentIndex + 1, 0, state.questions.length)
-  }))
-  .on(goToPrevQuestion, state => ({
-    ...state,
-    currentIndex: clamp(state.currentIndex - 1, 0, state.questions.length)
-  }))
-  .reset(resetQuiz);
+const data = localStorage.getItem("__quiz");
+
+const $quizStore = createStore<IQuizStore>(
+  data ? JSON.parse(data) : { questions: [], currentIndex: 0 }
+);
+
+$quizStore.on(fetchQuestionsFx.doneData, (_, fetchedQuestions) => ({
+  currentIndex: 0,
+  questions: fetchedQuestions
+}));
+
+$quizStore.on(goToNextQuestion, state => ({
+  ...state,
+  currentIndex: clamp(state.currentIndex + 1, 0, state.questions.length)
+}));
+
+$quizStore.on(goToPrevQuestion, state => ({
+  ...state,
+  currentIndex: clamp(state.currentIndex - 1, 0, state.questions.length)
+}));
+
+$quizStore.reset(resetQuiz);
 
 export default $quizStore;

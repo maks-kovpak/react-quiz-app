@@ -7,6 +7,7 @@ import $quizStore from "@/stores/quiz";
 
 import { AnswersList } from "@/components/AnswersList";
 import Footer from "@/components/Footer";
+import { useBeforeUnload } from "react-router-dom";
 
 const Question = () => {
   const quiz = useUnit($quizStore);
@@ -14,6 +15,8 @@ const Question = () => {
   const currentQuestion = useMemo(() => {
     return quiz.questions[quiz.currentIndex];
   }, [quiz]);
+
+  useBeforeUnload(() => localStorage.setItem("__quiz", JSON.stringify(quiz)));
 
   return (
     <>
