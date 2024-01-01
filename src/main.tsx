@@ -1,38 +1,41 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ConfigProvider, ThemeConfig } from "antd";
-import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import Main from "./pages/main";
 import Question from "./pages/question";
 import "@/assets/styles/index.less";
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Outlet />,
-    children: [
-      {
-        path: "/",
-        element: <Main />
-      },
-      {
-        path: "/question",
-        element: <Question />
-      }
-    ]
-  }
+  { path: "/", element: <Main /> },
+  { path: "/question", element: <Question /> }
 ]);
+
+const vars = {
+  // Colors
+  mainBgColor: "#ede8e3",
+  lightBgColor: "#f4f3f6",
+  primaryColor: "#31cd63",
+
+  // Fonts
+  mainFont: "'General Sans', sans-serif",
+  primaryTextColor: "#060710",
+  secondaryTextColor: "#757575",
+  titlesTextColor: "#191d63"
+} as const;
 
 const config: ThemeConfig = {
   token: {
-    fontFamily: "'General Sans', sans-serif",
-    colorPrimary: "#31CD63",
-    colorBgBase: "#F4F3F6"
+    fontFamily: vars.mainFont,
+    colorPrimary: vars.primaryColor,
+    colorBgBase: vars.lightBgColor
   },
   components: {
     Progress: {
-      defaultColor: "#31CD63"
+      defaultColor: vars.primaryColor,
+      colorText: vars.secondaryTextColor,
+      fontSize: 16
     }
   }
 };

@@ -1,18 +1,41 @@
 @import "@/assets/styles/_variables";
 
 .answer-option {
-  border: none;
+  border: none !important;
   padding: 10px;
-  height: 60px !important;
+  height: 5rem !important;
   display: flex;
   align-items: center;
   font-weight: 700;
+  color: @primary-text-color;
+
+  &::before {
+    display: none !important;
+  }
+
+  .ant-space {
+    gap: 1.875rem;
+  }
 
   &-prefix {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 3.0625rem;
+    height: 3.0625rem;
     background-color: @main-bg-color;
     border-radius: 50%;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.3522rem;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  & .ant-space-item:last-child {
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 135.224%;
   }
 }

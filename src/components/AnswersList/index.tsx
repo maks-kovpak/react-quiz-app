@@ -1,10 +1,12 @@
 import { FC, useMemo } from "react";
-import { Radio, Space } from "antd";
+import { Flex, Radio } from "antd";
 import AnswerOption from "@/components/AnswerOption";
 
 import { v4 as uuidv4 } from "uuid";
 import { shuffle } from "lodash";
 import type { IQuestion } from "@/api/questions";
+
+import "./index.less";
 
 const alphabet = "ABCDEF";
 
@@ -24,12 +26,12 @@ export const AnswersList: FC<{ question: IQuestion }> = ({ question }) => {
   }, [question]);
 
   return (
-    <Radio.Group>
-      <Space direction="vertical">
+    <Radio.Group className="answers-list">
+      <Flex gap="middle" vertical>
         {answerOptions.map((ans, i) => (
           <AnswerOption option={ans} prefix={alphabet[i]} key={uuidv4()} />
         ))}
-      </Space>
+      </Flex>
     </Radio.Group>
   );
 };
