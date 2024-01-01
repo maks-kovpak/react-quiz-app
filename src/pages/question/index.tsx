@@ -18,10 +18,7 @@ const Question = () => {
   return (
     <>
       <main>
-        <Typography.Title level={2}>
-          {he.decode(currentQuestion.question)}
-        </Typography.Title>
-
+        <Typography.Title level={2}>{he.decode(currentQuestion.question)}</Typography.Title>
         <AnswersList question={currentQuestion} />
       </main>
       <Footer />

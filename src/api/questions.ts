@@ -24,9 +24,7 @@ export default class QuestionsAPI {
     return QuestionsAPI.API_URL + "?" + params;
   }
 
-  public static async get(
-    options?: Partial<IQuizOptions>
-  ): Promise<IQuestion[]> {
+  public static async get(options?: Partial<IQuizOptions>): Promise<IQuestion[]> {
     const response = await axios.get<{ results: IQuestion[] }>(
       QuestionsAPI.generateUrl(options ?? { amount: 10 })
     );

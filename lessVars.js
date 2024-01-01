@@ -5,14 +5,14 @@ import * as prettier from "prettier";
 
 const LESS_FILE_PATH = "src/assets/styles/_variables.less";
 
-/** Function to convert string from `kebab-case` to `camelCase` */
+/** Convert string from `kebab-case` to `camelCase` */
 function camelize(s) {
   return s.replace(/-./g, x => x[1].toUpperCase());
 }
 
 /**
- * The function reads a less file, parses the variables, converts them to camel
- * case, formats the code using Prettier, and writes the formatted code to a TypeScript file.
+ * The function parses the variables from a less file, converts their names to camel case,
+ * and writes the formatted code (with Prettier) to a TypeScript file.
  */
 async function parseLessVariables() {
   const lessText = fs.readFileSync(LESS_FILE_PATH, "utf8");

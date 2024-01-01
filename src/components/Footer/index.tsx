@@ -10,10 +10,7 @@ const Footer = () => {
   return (
     <footer>
       <div className="footer-inner">
-        <Progress
-          percent={(quiz.currentIndex / quiz.questions.length) * 100}
-          size={[300, 16]}
-        />
+        <Progress percent={(quiz.currentIndex / quiz.questions.length) * 100} size={[300, 16]} />
 
         <Button type="primary" onClick={nextQuestion}>
           Continue

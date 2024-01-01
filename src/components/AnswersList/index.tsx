@@ -1,4 +1,4 @@
-import { FC, useMemo } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import { Flex, Radio } from "antd";
 import AnswerOption from "@/components/AnswerOption";
 
@@ -12,21 +12,25 @@ const alphabet = "ABCDEF";
 
 export const AnswersList: FC<{ question: IQuestion }> = ({ question }) => {
   const answerOptions = useMemo(() => {
-    const shuffledAnswers = shuffle([
-      question.correct_answer,
-      ...question.incorrect_answers
-    ]);
+    const shuffledAnswers = shuffle([question.correct_answer, ...question.incorrect_answers]);
 
-    return shuffledAnswers.reduce<IAnswerOption[]>(
-      (accumulator, item, index) => {
-        return [...accumulator, { value: index, label: item }];
-      },
-      []
-    );
+    return shuffledAnswers.reduce<IAnswerOption[]>((accumulator, item, index) => {
+      return [...accumulator, { value: index, label: item }];
+    }, []);
+  }, [question]);
+
+  const [currentValue, setCurrentValue] = useState<IAnswerOption["value"] | null>(null);
+
+  useEffect(() => {
+    setCurrentValue(null);
   }, [question]);
 
   return (
-    <Radio.Group className="answers-list">
+    <Radio.Group
+      className="answers-list"
+      value={currentValue}
+      onChange={e => setCurrentValue(e.target.value)}
+    >
       <Flex gap="middle" vertical>
         {answerOptions.map((ans, i) => (
           <AnswerOption option={ans} prefix={alphabet[i]} key={uuidv4()} />
