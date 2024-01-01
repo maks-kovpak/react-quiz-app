@@ -1,6 +1,8 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import { FC, useEffect, useMemo } from "react";
 import { Flex, Radio } from "antd";
 import AnswerOption from "@/components/AnswerOption";
+import $answersStore, { changeCurrentSelected } from "@/stores/answers";
+import { useUnit } from "effector-react";
 
 import { v4 as uuidv4 } from "uuid";
 import { shuffle } from "lodash";
@@ -19,17 +21,20 @@ export const AnswersList: FC<{ question: IQuestion }> = ({ question }) => {
     }, []);
   }, [question]);
 
-  const [currentValue, setCurrentValue] = useState<IAnswerOption["value"] | null>(null);
+  const answersStore = useUnit($answersStore);
+  const changeSelected = useUnit(changeCurrentSelected);
 
   useEffect(() => {
-    setCurrentValue(null);
-  }, [question]);
+    changeSelected(null);
+  }, [question, changeSelected]);
 
   return (
     <Radio.Group
       className="answers-list"
-      value={currentValue}
-      onChange={e => setCurrentValue(e.target.value)}
+      value={answersStore.currentSelected?.value}
+      onChange={e => {
+        changeSelected(answerOptions.find(item => item.value === e.target.value) ?? null);
+      }}
     >
       <Flex gap="middle" vertical>
         {answerOptions.map((ans, i) => (
