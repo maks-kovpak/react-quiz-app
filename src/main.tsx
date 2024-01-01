@@ -7,23 +7,12 @@ import Main from "./pages/main";
 import Question from "./pages/question";
 import "@/assets/styles/index.less";
 
+import vars from "./variables";
+
 const router = createBrowserRouter([
   { path: "/", element: <Main /> },
   { path: "/question", element: <Question /> }
 ]);
-
-const vars = {
-  // Colors
-  mainBgColor: "#ede8e3",
-  lightBgColor: "#f4f3f6",
-  primaryColor: "#31cd63",
-
-  // Fonts
-  mainFont: "'General Sans', sans-serif",
-  primaryTextColor: "#060710",
-  secondaryTextColor: "#757575",
-  titlesTextColor: "#191d63"
-} as const;
 
 const config: ThemeConfig = {
   token: {
